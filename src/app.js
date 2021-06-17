@@ -37,4 +37,26 @@ window.onload = function() {
   cardDiv.append(icon1);
   cardDiv.append(cards[cardsPicker]);
   cardDiv.append(icon2);
+
+  let button = document.querySelector("button");
+  button.addEventListener("click", function() {
+    suitPicker = Math.floor(Math.random() * suits.length);
+    cardsPicker = Math.floor(Math.random() * cards.length);
+
+    if (suits[suitPicker] == "♥" || suits[suitPicker] == "♦") {
+      icon1.style.color = "red";
+      icon2.style.color = "red";
+    } else {
+      icon1.style.color = "black";
+      icon2.style.color = "black";
+    }
+
+    icon1.innerHTML = suits[suitPicker];
+    icon2.innerHTML = suits[suitPicker];
+    cardDiv.innerHTML = "";
+
+    cardDiv.append(icon1);
+    cardDiv.append(cards[cardsPicker]);
+    cardDiv.append(icon2);
+  });
 };
