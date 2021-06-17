@@ -1,9 +1,11 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+/* General Selectors */
 body {
   background-color: green;
 }
 
+/* Class Selectors */
 .card {
   width: 225px;
   height: 350px;
