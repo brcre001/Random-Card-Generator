@@ -13,15 +13,18 @@ window.onload = function() {
 
   let body = document.querySelector("body");
   body.style.backgroundColor = "green";
+  body.style.justifyContent = "center";
 
   let cardDiv = document.querySelector(".card");
   let cardStyle = cardDiv.style;
   cardStyle.width = "225px";
   cardStyle.height = "350px";
-  cardStyle.margin = "10px";
+  cardStyle.display = "flex";
+  cardStyle.justifyContent = "center";
+  cardStyle.margin = "50px";
   cardStyle.fontSize = "50px";
   cardStyle.textAlign = "center";
-  cardStyle.verticalAlign = "middle";
+
   cardDiv.append(cards[cardsPicker]);
   console.log(cardDiv.target);
 };
