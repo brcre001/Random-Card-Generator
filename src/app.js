@@ -14,12 +14,14 @@ window.onload = function() {
   let body = document.querySelector("body");
   body.style.backgroundColor = "green";
 
-  let classDiv = document.querySelector(".card");
-  classDiv.style.width = "225px";
-  classDiv.style.height = "350px";
-  classDiv.style.margin = "10px";
-  classDiv.style.textAlign = "center";
-  classDiv.style.verticalAlign = "middle";
-  classDiv.append(cards[cardsPicker]);
-  console.log(classDiv.target);
+  let cardDiv = document.querySelector(".card");
+  let cardStyle = cardDiv.style;
+  cardStyle.width = "225px";
+  cardStyle.height = "350px";
+  cardStyle.margin = "10px";
+  cardStyle.fontSize = "50px";
+  cardStyle.textAlign = "center";
+  cardStyle.verticalAlign = "middle";
+  cardDiv.append(cards[cardsPicker]);
+  console.log(cardDiv.target);
 };
