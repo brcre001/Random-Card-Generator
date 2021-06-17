@@ -6,25 +6,29 @@ import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
 window.onload = function() {
-  let suits = ["spade", "heart", "club", "diamond"];
+  let suits = ["♠", "♥", "♣", "♦"];
   let suitPicker = Math.floor(Math.random() * suits.length);
   let cards = ["A", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
   let cardsPicker = Math.floor(Math.random() * cards.length);
 
-  let body = document.querySelector("body");
-  body.style.backgroundColor = "green";
-  body.style.justifyContent = "center";
-
   let cardDiv = document.querySelector(".card");
-  let cardStyle = cardDiv.style;
-  cardStyle.width = "225px";
-  cardStyle.height = "350px";
-  cardStyle.display = "flex";
-  cardStyle.justifyContent = "center";
-  cardStyle.margin = "50px";
-  cardStyle.fontSize = "50px";
-  cardStyle.textAlign = "center";
 
+  let icon1 = document.createElement("I");
+  let icon2 = document.createElement("I");
+
+  icon1.classList.add("icon1");
+  icon2.classList.add("icon2");
+
+  icon1.innerHTML = suits[suitPicker];
+  icon2.innerHTML = suits[suitPicker];
+
+  if (suits[suitPicker] == "♥" || suits[suitPicker] == "♦") {
+    icon1.style.color = "red";
+    icon2.style.color = "red";
+  }
+
+  cardDiv.append(icon1);
   cardDiv.append(cards[cardsPicker]);
-  console.log(cardDiv.target);
+  cardDiv.append(icon2);
+  //   console.log(cardDiv.target);
 };
