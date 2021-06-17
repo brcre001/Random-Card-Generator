@@ -24,11 +24,14 @@ button {
 
 .icon1 {
   text-align: left;
-  margin-bottom: 60px;
+  position: absolute;
+  top: 0;
 }
 
 .icon2 {
   text-align: left;
-  margin-top: 60px;
+  position: absolute;
   transform: rotate(180deg);
+  right: 0;
+  bottom: 0;
 }
