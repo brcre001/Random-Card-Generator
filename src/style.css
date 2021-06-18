@@ -22,6 +22,11 @@ button {
   text-align: center;
 }
 
+.textBox {
+  display: flex;
+  justify-content: center;
+}
+
 .icon1 {
   text-align: left;
   position: absolute;
@@ -34,4 +39,9 @@ button {
   transform: rotate(180deg);
   right: 0;
   bottom: 0;
+}
+
+/* ID Selectors */
+#change {
+  margin-bottom: 20px;
 }

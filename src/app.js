@@ -95,7 +95,7 @@ window.onload = function() {
   let h = document.querySelector("#newHeight");
 
   changeButton.addEventListener("click", function() {
-    if (parseInt(w.value) > 100 && parseInt(h.value) > 200) {
+    if (parseInt(w.value) >= 100 && parseInt(h.value) >= 200) {
       cardDiv.style.width = w.value + "px";
       cardDiv.style.height = h.value + "px";
     }
