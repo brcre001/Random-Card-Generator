@@ -5,97 +5,90 @@ import "./style.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
-window.onload = function() {
+window.generateRandomCard = function() {
   // Card and Suit arrays and random position generator
   let suits = ["♠", "♥", "♣", "♦"];
-  let suitPicker = Math.floor(Math.random() * suits.length);
+  let suitPicker = suits[Math.floor(Math.random() * suits.length)];
   let cards = ["A", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
-  let cardsPicker = Math.floor(Math.random() * cards.length);
+  let cardPicker = cards[Math.floor(Math.random() * cards.length)];
 
-  // Created a way to call the .card class
-  let cardDiv = document.querySelector(".card");
+  // Adding card color depending on suit
+  let cardColor = "";
+  if (suitPicker == "♥" || suitPicker == "♦") {
+    cardColor = "red";
+  } else {
+    cardColor = "black";
+  }
 
-  // Created the two icons where the type of suit will go
+  // Returning an object with labels to identify properties
+  return {
+    suit: suitPicker,
+    card: cardPicker,
+    color: cardColor
+  };
+};
+
+function renderCard(randomCard) {
+  // Creating the elements that will go into the main card div
+  let cardText = document.createElement("SPAN");
   let icon1 = document.createElement("I");
   let icon2 = document.createElement("I");
 
-  // Adding these icons to their respective classes on CSS
+  // Adding the card value and suit to the proper elements
+  cardText.innerHTML = randomCard.card;
+  icon1.innerHTML = randomCard.suit;
+  icon2.innerHTML = randomCard.suit;
+
+  // Adding styling from CSS to the icons
   icon1.classList.add("icon1");
   icon2.classList.add("icon2");
 
-  // Assigning the random suit generated into the innerHTML of the icon
-  icon1.innerHTML = suits[suitPicker];
-  icon2.innerHTML = suits[suitPicker];
+  // Adding the color of the text depending on the suit of the card
+  icon1.style.color = randomCard.color;
+  icon2.style.color = randomCard.color;
+  cardText.style.color = randomCard.color;
 
-  // Adding in fuctionality to change red suits to the correct color
-  if (suits[suitPicker] == "♥" || suits[suitPicker] == "♦") {
-    icon1.style.color = "red";
-    icon2.style.color = "red";
-  }
+  // Creating card variable to append elements to the card
+  let card = document.querySelector(".card");
+  card.append(icon1);
+  card.append(cardText);
+  card.append(icon2);
+}
 
-  // Appending the icons and random card value generated in correct order
-  cardDiv.append(icon1);
-  cardDiv.append(cards[cardsPicker]);
-  cardDiv.append(icon2);
+function emptyCard() {
+  // Set the contents of the card blank to
+  // prepare for appending of a new card
+  let cardDiv = document.querySelector(".card");
+  cardDiv.innerHTML = "";
+}
 
-  // Added the button to generate a new card
-  // Copied needed code from above and put it in the correct place
-  let button = document.querySelector("#newCard");
+window.onload = function() {
+  let card = generateRandomCard();
+  renderCard(card);
 
-  button.addEventListener("click", function() {
-    suitPicker = Math.floor(Math.random() * suits.length);
-    cardsPicker = Math.floor(Math.random() * cards.length);
-
-    if (suits[suitPicker] == "♥" || suits[suitPicker] == "♦") {
-      icon1.style.color = "red";
-      icon2.style.color = "red";
-    } else {
-      icon1.style.color = "black";
-      icon2.style.color = "black";
-    }
-
-    icon1.innerHTML = suits[suitPicker];
-    icon2.innerHTML = suits[suitPicker];
-
-    // Set the innerHTML to blank so that we can reappend variables in div
-    cardDiv.innerHTML = "";
-
-    cardDiv.append(icon1);
-    cardDiv.append(cards[cardsPicker]);
-    cardDiv.append(icon2);
+  // Making button to change card when pressed
+  let newCardButton = document.querySelector("#newCard");
+  newCardButton.addEventListener("click", function() {
+    emptyCard();
+    let card = generateRandomCard();
+    renderCard(card);
   });
 
   // Changing the card every 10 seconds
   setInterval(function() {
-    suitPicker = Math.floor(Math.random() * suits.length);
-    cardsPicker = Math.floor(Math.random() * cards.length);
-
-    if (suits[suitPicker] == "♥" || suits[suitPicker] == "♦") {
-      icon1.style.color = "red";
-      icon2.style.color = "red";
-    } else {
-      icon1.style.color = "black";
-      icon2.style.color = "black";
-    }
-
-    icon1.innerHTML = suits[suitPicker];
-    icon2.innerHTML = suits[suitPicker];
-
-    // Set the innerHTML to blank so that we can reappend variables in div
-    cardDiv.innerHTML = "";
-
-    cardDiv.append(icon1);
-    cardDiv.append(cards[cardsPicker]);
-    cardDiv.append(icon2);
-  }, 10000);
+    emptyCard();
+    let card = generateRandomCard();
+    renderCard(card);
+  }, 5000);
 
   // Changing width and height of card
   let changeButton = document.querySelector("#change");
   let w = document.querySelector("#newWidth");
   let h = document.querySelector("#newHeight");
 
+  let cardDiv = document.querySelector(".card");
   changeButton.addEventListener("click", function() {
-    if (parseInt(w.value) >= 100 && parseInt(h.value) >= 200) {
+    if (parseInt(w.value) >= 100 || parseInt(h.value) >= 200) {
       cardDiv.style.width = w.value + "px";
       cardDiv.style.height = h.value + "px";
     }
